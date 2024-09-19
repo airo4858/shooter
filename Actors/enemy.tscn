@@ -36,6 +36,7 @@ script = ExtResource("2_xpi4b")
 script = ExtResource("3_0o27c")
 
 [node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 position = Vector2(22, 18)

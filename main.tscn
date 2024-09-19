@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://3xhhl7dnn6pf"]
+[gd_scene load_steps=30 format=4 uid="uid://3xhhl7dnn6pf"]
 
 [ext_resource type="Texture2D" uid="uid://dkosm0au5pw25" path="res://Pixel Art Top Down - Basic/Texture/TX Tileset Grass.png" id="1_0y45x"]
 [ext_resource type="PackedScene" uid="uid://dc4sqmgoin8xd" path="res://Actors/Player/Player.tscn" id="1_7uppi"]
@@ -2068,6 +2068,15 @@ sources/2 = SubResource("TileSetAtlasSource_7i4pr")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f5gj0"]
 size = Vector2(1151.5, 63.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gog07"]
+size = Vector2(35, 656.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tawhm"]
+size = Vector2(1153.5, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3yo0"]
+size = Vector2(38, 661)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_mtc3y"]
 radius = 28.0179
 
@@ -2105,10 +2114,23 @@ position = Vector2(51, 553)
 script = ExtResource("10_swvtt")
 
 [node name="Wall" type="CharacterBody2D" parent="."]
+collision_layer = 16
 
 [node name="WallCollision" type="CollisionShape2D" parent="Wall" groups=["MapCollisions"]]
 position = Vector2(578.25, 30.25)
 shape = SubResource("RectangleShape2D_f5gj0")
+
+[node name="LeftWall" type="CollisionShape2D" parent="Wall" groups=["MapCollisions"]]
+position = Vector2(-21, 331.75)
+shape = SubResource("RectangleShape2D_gog07")
+
+[node name="BottomWall" type="CollisionShape2D" parent="Wall" groups=["MapCollisions"]]
+position = Vector2(575.25, 676.5)
+shape = SubResource("RectangleShape2D_tawhm")
+
+[node name="RightWall" type="CollisionShape2D" parent="Wall" groups=["MapCollisions"]]
+position = Vector2(1175, 332.5)
+shape = SubResource("RectangleShape2D_m3yo0")
 
 [node name="Rocks" type="CharacterBody2D" parent="."]
 

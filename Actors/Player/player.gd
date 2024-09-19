@@ -17,7 +17,8 @@ func _input(event):
 			var new_projectile = projectile_scene.instantiate()
 			get_parent().add_child(new_projectile)
 			
-			var projectile_forward = Vector2.from_angle(rotation)
+			var projectile_forward = position.direction_to(get_global_mouse_position())
+			#var projectile_forward = Vector2.from_angle(rotation)
 			new_projectile.fire(projectile_forward, 300.0)
 			new_projectile.position = $ProjectileRevPoint.global_position
 
@@ -42,12 +43,25 @@ func _physics_process(delta):
 	
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()
+
+	#MATH
+	#var angle = rad_to_deg(velocity.angle()) + 180
+	#if (velocity.length() < 10):
+		#$AnimationPlayer.play("idle_front")
+	#else:
+		#if(angle > 135 and angle < 225):
+			#$AnimationPlayer.play("walk_right")
+		#elif(angle > 225 and angle < 315):
+			#$AnimationPlayer.play("idle_front")
+		#elif(angle > 315 and angle < 45):
+			#$AnimationPlayer.play("walk_left")
+		#elif(angle > 45 and angle < 135):
+			#$AnimationPlayer.play("walk_up")
 	
 	if (Input.is_action_pressed("spell")):
 		if can_spell:
 			can_spell = false
 		spell_holding = true
-		spell_hold_time = 0.0
 		
 	if (spell_holding):
 		spell_hold_time += delta
@@ -56,13 +70,19 @@ func _physics_process(delta):
 		if (spell_hold_time <= 1):
 			_input3("spell")
 		elif (spell_hold_time >1 and spell_hold_time <= 2):
-			spell_speed += 100
+			spell_speed += 150
+			$Energy2.visible = true
 			_input3("spell")
 		elif (spell_hold_time > 2):
-			spell_speed += 200
+			spell_speed += 300
+			$Energy1.visible = true
 			_input3("spell")
 		can_spell = true
 		spell_holding = false
+		spell_hold_time = 0.0
+		spell_speed = 300
+		$Energy1.visible = false
+		$Energy2.visible = false
 	
 	if (Input.is_action_pressed("boomerang")):
 		if can_shoot:
