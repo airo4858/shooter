@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var projectile_scene: Resource
 @export var boomerang_scene: Resource
 @export var spell_scene: Resource
-@export var move_speed: float = 80.0
+@export var move_speed: float = 100.0
 
 var can_shoot: bool = true
 var can_spell: bool = true
@@ -26,7 +26,8 @@ func _input2(event):
 	var new_boomerang = boomerang_scene.instantiate()
 	get_parent().add_child(new_boomerang)
 	
-	var boomerang_forward = Vector2.from_angle(rotation)
+	var boomerang_forward = position.direction_to(get_global_mouse_position())
+	#var boomerang_forward = Vector2.from_angle(rotation)
 	new_boomerang.fire(boomerang_forward, 300.0)
 	new_boomerang.position = $ProjectileRevPoint.global_position
 	
@@ -34,29 +35,30 @@ func _input3(event):
 	var new_spell = spell_scene.instantiate()
 	get_parent().add_child(new_spell)
 	
-	var spell_forward = Vector2.from_angle(rotation)
+	var spell_forward = position.direction_to(get_global_mouse_position())
+	#var spell_forward = Vector2.from_angle(rotation)
 	new_spell.fire(spell_forward, spell_speed)
 	new_spell.position = $SpellRevPoint.global_position
 
 func _physics_process(delta):
-	look_at(get_global_mouse_position())
+	#look_at(get_global_mouse_position())
 	
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()
 
 	#MATH
-	#var angle = rad_to_deg(velocity.angle()) + 180
-	#if (velocity.length() < 10):
-		#$AnimationPlayer.play("idle_front")
-	#else:
-		#if(angle > 135 and angle < 225):
-			#$AnimationPlayer.play("walk_right")
-		#elif(angle > 225 and angle < 315):
-			#$AnimationPlayer.play("idle_front")
-		#elif(angle > 315 and angle < 45):
-			#$AnimationPlayer.play("walk_left")
-		#elif(angle > 45 and angle < 135):
-			#$AnimationPlayer.play("walk_up")
+	var angle = rad_to_deg(velocity.angle()) + 180
+	if (velocity.length() < 10):
+		$AnimationPlayer.play("new_idle_front")
+	else:
+		if(angle > 135 and angle < 225):
+			$AnimationPlayer.play("new_walk_right")
+		elif(angle > 225 and angle < 315):
+			$AnimationPlayer.play("new_walk_front")
+		elif(angle > 315 or angle < 45):
+			$AnimationPlayer.play("new_walk_left")
+		elif(angle > 45 and angle < 135):
+			$AnimationPlayer.play("new_walk_up")
 	
 	if (Input.is_action_pressed("spell")):
 		if can_spell:

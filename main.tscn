@@ -2106,6 +2106,8 @@ tile_set = SubResource("TileSet_q25ns")
 
 [node name="Player" parent="." instance=ExtResource("1_7uppi")]
 position = Vector2(784, 286)
+scale = Vector2(1.6092, 1.6092)
+collision_mask = 31
 
 [node name="Enemy" parent="." instance=ExtResource("9_j2q2x")]
 position = Vector2(51, 553)
@@ -2133,6 +2135,7 @@ position = Vector2(1175, 332.5)
 shape = SubResource("RectangleShape2D_m3yo0")
 
 [node name="Rocks" type="CharacterBody2D" parent="."]
+collision_layer = 16
 
 [node name="Rock1" type="CollisionShape2D" parent="Rocks"]
 position = Vector2(688, 165)
