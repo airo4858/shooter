@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bx8fmxjin8ltr"]
+
+[ext_resource type="Script" path="res://Actors/enemy.gd" id="1_t0p0m"]
+[ext_resource type="Script" path="res://Actors/idle.gd" id="2_xpi4b"]
+[ext_resource type="Script" path="res://Actors/chasing.gd" id="3_0o27c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lt"]
+size = Vector2(34, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xfmsl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
+radius = 202.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+collision_layer = 2
+script = ExtResource("1_t0p0m")
+initial_state = NodePath("States/Idle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 15)
+shape = SubResource("RectangleShape2D_u56lt")
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+modulate = Color(0.2, 0.301961, 0, 1)
+position = Vector2(16.75, 15.25)
+scale = Vector2(34.5, 31.5)
+texture = SubResource("CanvasTexture_xfmsl")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("2_xpi4b")
+
+[node name="Chasing" type="Node" parent="States"]
+script = ExtResource("3_0o27c")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(22, 18)
+shape = SubResource("CircleShape2D_ijqe3")

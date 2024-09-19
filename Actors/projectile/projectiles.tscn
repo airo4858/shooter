@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddgc5qconj0th"]
+
+[ext_resource type="Script" path="res://Actors/projectile/projectiles.gd" id="1_scvjb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_orrvm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_i1261"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_f4dkd"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_qoamw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcxku"]
+
+[node name="Projectile" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_scvjb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.109804, 0.0980392, 1, 1)
+position = Vector2(-4.76837e-07, 0)
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_orrvm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.0392157, 1, 1, 1)
+position = Vector2(-25, 8.94076e-08)
+scale = Vector2(7.5, 10)
+texture = SubResource("CanvasTexture_i1261")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0.815686, 0.933333, 1)
+position = Vector2(-16, -1.49012e-07)
+scale = Vector2(13, 16)
+texture = SubResource("CanvasTexture_f4dkd")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0, 0.815686, 0.933333, 1)
+position = Vector2(-3, -5.96046e-08)
+scale = Vector2(18, 12)
+texture = SubResource("CanvasTexture_qoamw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qcxku")
+
+[node name="TimeToLive" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimeToLive" to="." method="_on_time_to_live_timeout"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://t74t156clp8y"]
+
+[ext_resource type="Script" path="res://boomerang.gd" id="1_xskrb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5twgb"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_78s6o"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_bcksp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glemb"]
+size = Vector2(10.3766, 4.15841)
+
+[node name="Boomerang" type="Area2D"]
+position = Vector2(0.374575, -0.187287)
+scale = Vector2(2.59827, 2.46451)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_xskrb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.284422, 0.160184, 0.0544885, 1)
+position = Vector2(-2.45188, 0.0983763)
+rotation = -0.261799
+scale = Vector2(4.5, 3)
+skew = 0.523599
+texture = SubResource("CanvasTexture_5twgb")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0.284422, 0.160184, 0.0544885, 1)
+position = Vector2(2.54812, 0.0983763)
+rotation = 0.261799
+scale = Vector2(4.5, 3)
+skew = -0.523599
+texture = SubResource("CanvasTexture_5twgb")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(0.284422, 0.160184, 0.0544885, 1)
+position = Vector2(0.0607195, -0.373814)
+scale = Vector2(1.22074, 2.74374)
+texture = SubResource("CanvasTexture_78s6o")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+modulate = Color(0.284422, 0.160184, 0.0544885, 1)
+position = Vector2(0.113317, 0.477936)
+scale = Vector2(1.99114, 1.06778)
+texture = SubResource("CanvasTexture_bcksp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.0636177, 0.121706)
+shape = SubResource("RectangleShape2D_glemb")
+
+[node name="BoomerangTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

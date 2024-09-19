@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dc4sqmgoin8xd"]
+
+[ext_resource type="Script" path="res://Actors/Player/player.gd" id="1_omo2e"]
+[ext_resource type="PackedScene" uid="uid://ddgc5qconj0th" path="res://Actors/projectile/projectiles.tscn" id="2_b8cyg"]
+[ext_resource type="PackedScene" uid="uid://t74t156clp8y" path="res://boomerang.tscn" id="3_b1uqr"]
+[ext_resource type="PackedScene" uid="uid://bhvsw0dig7h5f" path="res://spell.tscn" id="4_dg35c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_g5pat"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_44t33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65s15"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(571, 304)
+collision_mask = 15
+script = ExtResource("1_omo2e")
+projectile_scene = ExtResource("2_b8cyg")
+boomerang_scene = ExtResource("3_b1uqr")
+spell_scene = ExtResource("4_dg35c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(20, 20)
+texture = SubResource("CanvasTexture_g5pat")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(0.7, -2.22045e-16)
+scale = Vector2(0.25, 0.25)
+texture = SubResource("CanvasTexture_44t33")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_65s15")
+
+[node name="ProjectileRevPoint" type="Node2D" parent="."]
+position = Vector2(14, 0)
+
+[node name="SpellRevPoint" type="Node2D" parent="."]
+position = Vector2(64, -1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
