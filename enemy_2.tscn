@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx8fmxjin8ltr"]
+[gd_scene load_steps=8 format=3 uid="uid://cg7if2pb4bhfx"]
 
-[ext_resource type="Script" path="res://Actors/enemy.gd" id="1_t0p0m"]
-[ext_resource type="Script" path="res://Actors/idle.gd" id="2_xpi4b"]
-[ext_resource type="Script" path="res://Actors/chasing.gd" id="3_0o27c"]
-[ext_resource type="Texture2D" uid="uid://dinqkhwjr3gm3" path="res://Char_006_Idle.png" id="4_uxjjn"]
+[ext_resource type="Script" path="res://enemy_2.gd" id="1_b41sx"]
+[ext_resource type="Script" path="res://Actors/idle.gd" id="2_77uok"]
+[ext_resource type="Script" path="res://Actors/chasing.gd" id="3_il3xc"]
+[ext_resource type="Texture2D" uid="uid://nv75xy4b4cll" path="res://Char_004_Idle.png" id="4_qttke"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lt"]
 size = Vector2(29, 24)
@@ -13,18 +13,19 @@ size = Vector2(29, 24)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
 radius = 611.007
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+position = Vector2(319, 70)
 collision_layer = 2
-script = ExtResource("1_t0p0m")
+script = ExtResource("1_b41sx")
 initial_state = NodePath("States/Idle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.5, 18)
+position = Vector2(17, 16)
 shape = SubResource("RectangleShape2D_u56lt")
 
 [node name="MainSprite" type="Sprite2D" parent="."]
 visible = false
-modulate = Color(0.2, 0.301961, 0, 1)
+modulate = Color(0.846045, 0.76088, 0.710334, 1)
 position = Vector2(16.75, 15.25)
 scale = Vector2(34.5, 31.5)
 texture = SubResource("CanvasTexture_xfmsl")
@@ -32,10 +33,10 @@ texture = SubResource("CanvasTexture_xfmsl")
 [node name="States" type="Node" parent="."]
 
 [node name="Idle" type="Node" parent="States"]
-script = ExtResource("2_xpi4b")
+script = ExtResource("2_77uok")
 
 [node name="Chasing" type="Node" parent="States"]
-script = ExtResource("3_0o27c")
+script = ExtResource("3_il3xc")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 2
@@ -45,8 +46,8 @@ position = Vector2(22, 18)
 shape = SubResource("CircleShape2D_ijqe3")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
-position = Vector2(17, 4)
+position = Vector2(17, 2)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_uxjjn")
+texture = ExtResource("4_qttke")
 hframes = 4
 vframes = 4
