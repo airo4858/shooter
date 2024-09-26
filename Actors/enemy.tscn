@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx8fmxjin8ltr"]
+[gd_scene load_steps=10 format=3 uid="uid://bx8fmxjin8ltr"]
 
 [ext_resource type="Script" path="res://Actors/enemy.gd" id="1_t0p0m"]
 [ext_resource type="Script" path="res://Actors/idle.gd" id="2_xpi4b"]
 [ext_resource type="Script" path="res://Actors/chasing.gd" id="3_0o27c"]
+[ext_resource type="Script" path="res://Actors/shooting.gd" id="4_m84fy"]
 [ext_resource type="Texture2D" uid="uid://dinqkhwjr3gm3" path="res://Char_006_Idle.png" id="4_uxjjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lt"]
@@ -12,6 +13,9 @@ size = Vector2(29, 24)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
 radius = 611.007
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbgm5"]
+radius = 242.002
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
 collision_layer = 2
@@ -37,6 +41,9 @@ script = ExtResource("2_xpi4b")
 [node name="Chasing" type="Node" parent="States"]
 script = ExtResource("3_0o27c")
 
+[node name="Shooting" type="Node" parent="States"]
+script = ExtResource("4_m84fy")
+
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 2
 
@@ -50,3 +57,9 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_uxjjn")
 hframes = 4
 vframes = 4
+
+[node name="ShootRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootRange"]
+position = Vector2(18, 18)
+shape = SubResource("CircleShape2D_tbgm5")

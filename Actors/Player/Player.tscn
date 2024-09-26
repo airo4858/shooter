@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dc4sqmgoin8xd"]
+[gd_scene load_steps=23 format=3 uid="uid://dc4sqmgoin8xd"]
 
 [ext_resource type="Script" path="res://Actors/Player/player.gd" id="1_omo2e"]
 [ext_resource type="PackedScene" uid="uid://ddgc5qconj0th" path="res://Actors/projectile/projectiles.tscn" id="2_b8cyg"]
@@ -55,6 +55,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterSprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_qoubf")]
 }
 
 [sub_resource type="Animation" id="Animation_66r6u"]
@@ -286,6 +298,58 @@ length = 0.333342
 loop_mode = 1
 step = 0.0833333
 
+[sub_resource type="Animation" id="Animation_ol6eq"]
+resource_name = "the_idle"
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterSprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_qoubf")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CharacterSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CharacterSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8rnqx"]
 _data = {
 "RESET": SubResource("Animation_ohwes"),
@@ -295,6 +359,7 @@ _data = {
 "new_walk_left": SubResource("Animation_7vp7d"),
 "new_walk_right": SubResource("Animation_wndlj"),
 "new_walk_up": SubResource("Animation_ksy8a"),
+"the_idle": SubResource("Animation_ol6eq"),
 "walk_left": SubResource("Animation_rn1at"),
 "walk_right": SubResource("Animation_77ank"),
 "walk_up": SubResource("Animation_4dcen")

@@ -42,14 +42,13 @@ func _input3(event):
 
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
-	
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()
 
 	#MATH
 	var angle = rad_to_deg(velocity.angle()) + 180
 	if (velocity.length() < 10):
-		$AnimationPlayer.play("new_idle_front")
+		$AnimationPlayer.play("the_idle")
 	else:
 		if(angle > 135 and angle < 225):
 			$AnimationPlayer.play("new_walk_right")
