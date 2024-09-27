@@ -10,6 +10,8 @@ var can_spell: bool = true
 var spell_hold_time: float = 0.0
 var spell_holding: bool = false
 var spell_speed: float = 300.0
+var is_running: bool = true
+var hit_player: Area2D
 
 func _input(event):
 	if (event is InputEventMouseButton):
@@ -42,6 +44,7 @@ func _input3(event):
 
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
+	
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()
 
@@ -91,3 +94,9 @@ func _physics_process(delta):
 			can_shoot = false
 	if (Input.is_action_just_released("boomerang")):
 		can_shoot = true
+	
+	hit_player = get_node("HitPlayer")
+	
+func _on_hit_player_body_entered(hit_player):
+	print("im dead af")
+	is_running = false

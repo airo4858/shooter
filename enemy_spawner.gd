@@ -2,9 +2,6 @@ extends Node
 # Preload the character scene
 var enemy_scene = preload("res://Actors/enemy.tscn")
 var enemy_scene2 = preload("res://Actors/enemy_2.tscn")
-var spawn_place1 = Vector2(randf()*300, 600)
-var spawn_place2 = Vector2(randf()* 100,100)
-var spawn_place3 = Vector2(1100,randf() * 100 + 500)
 
 func _ready():
 	# Start the timer when the scene is ready
@@ -12,6 +9,9 @@ func _ready():
 
 # Function to spawn characters
 func _on_SpawnTimer_timeout():
+	var spawn_place1 = Vector2(randf()*300, 600)
+	var spawn_place2 = Vector2(randf()* 100,100)
+	var spawn_place3 = Vector2(1100,randf() * 100 + 500)
 	print("spawn")
 	if randi() % 3 == 0:
 		var enemy_instance = enemy_scene.instantiate()
