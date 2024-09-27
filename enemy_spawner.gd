@@ -1,10 +1,10 @@
 extends Node
 # Preload the character scene
 var enemy_scene = preload("res://Actors/enemy.tscn")
-var enemy_scene2 = preload("res://enemy_2.tscn")
+var enemy_scene2 = preload("res://Actors/enemy_2.tscn")
 var spawn_place1 = Vector2(randf()*300, 600)
-var spawn_place2 = Vector2(50,100)
-var spawn_place3 = Vector2(1100,600)
+var spawn_place2 = Vector2(randf()* 100,100)
+var spawn_place3 = Vector2(1100,randf() * 100 + 500)
 
 func _ready():
 	# Start the timer when the scene is ready

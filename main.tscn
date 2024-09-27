@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cogwjio15374" path="res://Pixel Art Top Down - Basic/Texture/TX Plant.png" id="3_ntnre"]
 [ext_resource type="Texture2D" uid="uid://ctvdyuikq37ia" path="res://Pixel Art Top Down - Basic/Texture/TX Shadow.png" id="3_tqc5n"]
 [ext_resource type="PackedScene" uid="uid://bx8fmxjin8ltr" path="res://Actors/enemy.tscn" id="9_j2q2x"]
-[ext_resource type="PackedScene" uid="uid://cg7if2pb4bhfx" path="res://enemy_2.tscn" id="10_qvrv8"]
+[ext_resource type="PackedScene" uid="uid://cg7if2pb4bhfx" path="res://Actors/enemy_2.tscn" id="10_qvrv8"]
 [ext_resource type="Script" path="res://enemy_spawner.gd" id="10_swvtt"]
 [ext_resource type="PackedScene" uid="uid://bvop2frf4t5l3" path="res://ui.tscn" id="11_vncop"]
 

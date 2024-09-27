@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cg7if2pb4bhfx"]
 
-[ext_resource type="Script" path="res://enemy_2.gd" id="1_b41sx"]
-[ext_resource type="Script" path="res://Actors/idle.gd" id="2_77uok"]
-[ext_resource type="Script" path="res://Actors/chasing.gd" id="3_il3xc"]
-[ext_resource type="Texture2D" uid="uid://nv75xy4b4cll" path="res://Char_004_Idle.png" id="4_qttke"]
+[ext_resource type="Script" path="res://Actors/enemy_2.gd" id="1_bw12k"]
+[ext_resource type="Script" path="res://Actors/idle_2.gd" id="2_2hu8q"]
+[ext_resource type="Script" path="res://Actors/chasing_2.gd" id="3_dvy5m"]
+[ext_resource type="Texture2D" uid="uid://nv75xy4b4cll" path="res://Char_004_Idle.png" id="4_dcfgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lt"]
 size = Vector2(29, 24)
@@ -16,8 +16,8 @@ radius = 611.007
 [node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
 position = Vector2(319, 70)
 collision_layer = 2
-script = ExtResource("1_b41sx")
-initial_state = NodePath("States/Idle")
+script = ExtResource("1_bw12k")
+initial_state = NodePath("States/Idle2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(17, 16)
@@ -32,11 +32,11 @@ texture = SubResource("CanvasTexture_xfmsl")
 
 [node name="States" type="Node" parent="."]
 
-[node name="Idle" type="Node" parent="States"]
-script = ExtResource("2_77uok")
+[node name="Idle2" type="Node" parent="States"]
+script = ExtResource("2_2hu8q")
 
-[node name="Chasing" type="Node" parent="States"]
-script = ExtResource("3_il3xc")
+[node name="Chasing2" type="Node" parent="States"]
+script = ExtResource("3_dvy5m")
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 2
@@ -48,6 +48,6 @@ shape = SubResource("CircleShape2D_ijqe3")
 [node name="CharacterSprite" type="Sprite2D" parent="."]
 position = Vector2(17, 2)
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("4_qttke")
+texture = ExtResource("4_dcfgy")
 hframes = 4
 vframes = 4

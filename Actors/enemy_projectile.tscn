@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://csrg7fayqwhol"]
 
-[ext_resource type="Script" path="res://Actors/projectile/projectiles.gd" id="1_atghv"]
+[ext_resource type="Script" path="res://Actors/projectile/projectiles.gd" id="1_bhpq8"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_orrvm"]
 
@@ -16,7 +16,7 @@
 scale = Vector2(0.5, 0.5)
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("1_atghv")
+script = ExtResource("1_bhpq8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.72549, 0, 0.0823529, 1)
