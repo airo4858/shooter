@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dh3a5op1vnytd"]
+
+[ext_resource type="Script" path="res://Actors/enemy_3.gd" id="1_a0tmr"]
+[ext_resource type="Script" path="res://Actors/idle_3.gd" id="2_p6d5m"]
+[ext_resource type="Script" path="res://Actors/chasing_3.gd" id="3_ot6gi"]
+[ext_resource type="Texture2D" uid="uid://nv75xy4b4cll" path="res://Char_004_Idle.png" id="4_qtimg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u56lt"]
+size = Vector2(23, 18)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xfmsl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
+radius = 611.007
+
+[node name="Enemy3" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+position = Vector2(5, 8)
+collision_layer = 2
+script = ExtResource("1_a0tmr")
+initial_state = NodePath("States/Idle3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(17, 11)
+shape = SubResource("RectangleShape2D_u56lt")
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.846045, 0.76088, 0.710334, 1)
+position = Vector2(16.75, 15.25)
+scale = Vector2(34.5, 31.5)
+texture = SubResource("CanvasTexture_xfmsl")
+
+[node name="States" type="Node" parent="."]
+
+[node name="Idle3" type="Node" parent="States"]
+script = ExtResource("2_p6d5m")
+
+[node name="Chasing3" type="Node" parent="States"]
+script = ExtResource("3_ot6gi")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(22, 18)
+shape = SubResource("CircleShape2D_ijqe3")
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(17, 2)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_qtimg")
+hframes = 4
+vframes = 6

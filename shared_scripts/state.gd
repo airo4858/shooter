@@ -20,3 +20,6 @@ func process_state(delta: float):
 
 func process_input(event: InputEvent):
 	pass
+
+func look_at(position):
+	pass
