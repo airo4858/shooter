@@ -8,7 +8,7 @@ var shoot_time: float = 1.5
 @export var enemy_projectile: Resource
 
 
-func ready():
+func initialize():
 	target = get_node("Main/Player")
 	enemy = get_node("Main/Enemy")
 	projectile = enemy_projectile.instantiate()
