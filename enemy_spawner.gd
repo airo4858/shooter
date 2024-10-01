@@ -12,7 +12,7 @@ func _on_SpawnTimer_timeout():
 	var spawn_place1 = Vector2(randf()*300, 600)
 	var spawn_place2 = Vector2(randf()* 100,100)
 	var spawn_place3 = Vector2(1100,randf() * 100 + 500)
-	print("spawn")
+	#print("spawn")
 	if randi() % 3 == 0:
 		var enemy_instance = enemy_scene.instantiate()
 		enemy_instance.position = spawn_place1

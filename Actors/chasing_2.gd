@@ -1,6 +1,6 @@
 extends State
 
-@export var chase_speed: float = 45.0
+@export var chase_speed: float = 55.0
 var target: CharacterBody2D
 var animation : AnimationPlayer
 

@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var boomerang_scene: Resource
 @export var spell_scene: Resource
 @export var move_speed: float = 100.0
+@export var hp: int = 3
 
 var can_shoot: bool = true
 var can_spell: bool = true
@@ -42,6 +43,13 @@ func _input3(event):
 	new_spell.fire(spell_forward, spell_speed)
 	new_spell.position = $SpellRevPoint.global_position
 
+func hurt(damage_number: int):
+	hp -= damage_number
+	get_tree().get_root().get_node("Main/HUD").take_damage(1)
+	if (hp <= 0):
+		print("im dead af")
+		is_running = false
+
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
 	
@@ -66,6 +74,11 @@ func _physics_process(delta):
 		if can_spell:
 			can_spell = false
 		spell_holding = true
+		if (spell_hold_time >1 and spell_hold_time <= 2):
+			$Energy2.visible = true
+		elif (spell_hold_time > 2):
+			$Energy1.visible = true
+
 		
 	if (spell_holding):
 		spell_hold_time += delta
@@ -75,11 +88,9 @@ func _physics_process(delta):
 			_input3("spell")
 		elif (spell_hold_time >1 and spell_hold_time <= 2):
 			spell_speed += 150
-			$Energy2.visible = true
 			_input3("spell")
 		elif (spell_hold_time > 2):
 			spell_speed += 300
-			$Energy1.visible = true
 			_input3("spell")
 		can_spell = true
 		spell_holding = false
@@ -95,8 +106,10 @@ func _physics_process(delta):
 	if (Input.is_action_just_released("boomerang")):
 		can_shoot = true
 	
-	hit_player = get_node("HitPlayer")
 	
-func _on_hit_player_body_entered(hit_player):
-	print("im dead af")
-	is_running = false
+	
+	#hit_player = get_node("HitPlayer")
+	
+#func _on_hit_player_body_entered(hit_player):
+	#print("im dead af")
+	#is_running = false

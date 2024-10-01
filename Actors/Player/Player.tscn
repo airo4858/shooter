@@ -376,7 +376,7 @@ projectile_scene = ExtResource("2_b8cyg")
 boomerang_scene = ExtResource("3_b1uqr")
 spell_scene = ExtResource("4_dg35c")
 
-[node name="HitPlayer" type="Area2D" parent="."]
+[node name="HitPlayer" type="Area2D" parent="." groups=["HitPlayer"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitPlayer"]
 position = Vector2(0, -2)
