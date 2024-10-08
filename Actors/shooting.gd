@@ -32,7 +32,7 @@ func aim_and_shoot(delta):
 	if (shoot_time < 0):
 		shoot()
 		shoot_time = 1.0
-
+		projectile_speed += 1
 
 func shoot():
 	var new_projectile = enemy_projectile.instantiate()

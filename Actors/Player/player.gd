@@ -49,24 +49,27 @@ func hurt(damage_number: int):
 	if (hp <= 0):
 		print("im dead af")
 		get_tree().get_root().get_node("Main/HUD/End").visible = true
+		get_tree().paused = true
 		is_running = false
 		visible = false
 
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
+	#visible = false
+	#get_tree().paused = true
 	get_tree().get_root().get_node("Main/HUD/End").visible = false
 	if (not is_running):
 		if (Input.is_action_just_pressed("StartScreen")):
 			is_running = true
+			#get_tree().paused = false
 			get_tree().get_root().get_node("Main/HUD/Start").visible = false
 			visible = true
-			
 		return
-	
+
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()
-
-	#MATH
+		
+		#MATH
 	var angle = rad_to_deg(velocity.angle()) + 180
 	if (velocity.length() < 10):
 		$AnimationPlayer.play("the_idle")
@@ -79,7 +82,7 @@ func _physics_process(delta):
 			$AnimationPlayer.play("new_walk_left")
 		elif(angle > 45 and angle < 135):
 			$AnimationPlayer.play("new_walk_up")
-	
+		
 	if (Input.is_action_pressed("spell")):
 		if can_spell:
 			can_spell = false
@@ -89,10 +92,10 @@ func _physics_process(delta):
 		elif (spell_hold_time > 2):
 			$Energy1.visible = true
 
-		
+			
 	if (spell_holding):
 		spell_hold_time += delta
-	
+		
 	if (Input.is_action_just_released("spell")):
 		if (spell_hold_time <= 1):
 			_input3("spell")
@@ -108,7 +111,7 @@ func _physics_process(delta):
 		spell_speed = 300
 		$Energy1.visible = false
 		$Energy2.visible = false
-	
+		
 	if (Input.is_action_pressed("boomerang")):
 		if can_shoot:
 			_input2("boomerang")
