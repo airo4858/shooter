@@ -6,15 +6,25 @@ var is_chasing : bool = true
 var shoot_time: float = 1.0
 var projectile_speed: float = 100.0
 @export var enemy_projectile: Resource
-
+var animation : AnimationPlayer
 
 func initialize():
 	target = get_node("Main/Player")
+	animation = body.get_node("AnimationEnemy1")
 
 func process_state(delta: float):
-	#print("I shitted my pants")
 	is_chasing = false
 	aim_and_shoot(delta)
+	var direction = (target.position - body.position).normalized()
+	var angle = rad_to_deg(body.velocity.angle()) + 180
+	if(angle > 135 and angle < 225):
+		animation.play("shoot_right")
+	elif(angle > 225 and angle < 315):
+		animation.play("shoot_down")
+	elif(angle > 315 or angle < 45):
+		animation.play("shoot_left")
+	elif(angle > 45 and angle < 135):
+		animation.play("shoot_up")
 	
 func aim_and_shoot(delta):
 	look_at(target.position)

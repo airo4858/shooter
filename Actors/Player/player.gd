@@ -11,7 +11,7 @@ var can_spell: bool = true
 var spell_hold_time: float = 0.0
 var spell_holding: bool = false
 var spell_speed: float = 300.0
-var is_running: bool = true
+var is_running: bool = false
 var hit_player: Area2D
 
 func _input(event):
@@ -48,10 +48,20 @@ func hurt(damage_number: int):
 	get_tree().get_root().get_node("Main/HUD").take_damage(1)
 	if (hp <= 0):
 		print("im dead af")
+		get_tree().get_root().get_node("Main/HUD/End").visible = true
 		is_running = false
+		visible = false
 
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
+	get_tree().get_root().get_node("Main/HUD/End").visible = false
+	if (not is_running):
+		if (Input.is_action_just_pressed("StartScreen")):
+			is_running = true
+			get_tree().get_root().get_node("Main/HUD/Start").visible = false
+			visible = true
+			
+		return
 	
 	velocity = Input.get_vector("move_left", "move_right", "move_up", "move_down") * move_speed
 	move_and_slide()

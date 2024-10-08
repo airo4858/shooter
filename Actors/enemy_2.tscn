@@ -12,7 +12,7 @@ size = Vector2(23, 18)
 [sub_resource type="CanvasTexture" id="CanvasTexture_xfmsl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
-radius = 611.007
+radius = 556.004
 
 [sub_resource type="Animation" id="Animation_g1tmi"]
 length = 0.001
