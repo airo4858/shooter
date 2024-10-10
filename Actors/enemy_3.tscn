@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh3a5op1vnytd"]
+[gd_scene load_steps=9 format=3 uid="uid://dh3a5op1vnytd"]
 
 [ext_resource type="Script" path="res://Actors/enemy_3.gd" id="1_a0tmr"]
 [ext_resource type="Script" path="res://Actors/idle_3.gd" id="2_p6d5m"]
@@ -13,7 +13,10 @@ size = Vector2(23, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ijqe3"]
 radius = 611.007
 
-[node name="Enemy3" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyic1"]
+size = Vector2(29, 23)
+
+[node name="Enemy3" type="CharacterBody2D" node_paths=PackedStringArray("initial_state") groups=["Enemy"]]
 position = Vector2(5, 8)
 collision_layer = 2
 script = ExtResource("1_a0tmr")
@@ -51,3 +54,9 @@ scale = Vector2(0.75, 0.75)
 texture = ExtResource("4_qtimg")
 hframes = 4
 vframes = 6
+
+[node name="HitRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
+position = Vector2(17.5, 10.5)
+shape = SubResource("RectangleShape2D_gyic1")

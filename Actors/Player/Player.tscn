@@ -1,10 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://dc4sqmgoin8xd"]
+[gd_scene load_steps=29 format=3 uid="uid://dc4sqmgoin8xd"]
 
 [ext_resource type="Script" path="res://Actors/Player/player.gd" id="1_omo2e"]
 [ext_resource type="PackedScene" uid="uid://ddgc5qconj0th" path="res://Actors/projectile/projectiles.tscn" id="2_b8cyg"]
 [ext_resource type="PackedScene" uid="uid://t74t156clp8y" path="res://boomerang.tscn" id="3_b1uqr"]
 [ext_resource type="PackedScene" uid="uid://bhvsw0dig7h5f" path="res://spell.tscn" id="4_dg35c"]
 [ext_resource type="Texture2D" uid="uid://bqolj0s8ntt0d" path="res://Char_001.png" id="5_qoubf"]
+[ext_resource type="AudioStream" uid="uid://iskcuiwhs5wn" path="res://Sound/SFX/692084__gamer500__death-sound-pixel.wav" id="6_j7mxd"]
+[ext_resource type="AudioStream" uid="uid://k7mp285o4vrv" path="res://Sound/SFX/446450__usuarioleal__52-boomerang.wav" id="7_7cl0t"]
+[ext_resource type="AudioStream" uid="uid://tkmiu8t0pkb" path="res://Sound/SFX/659595__matrixxx__magic-spell-09-remastered-01.wav" id="7_uf2yd"]
+[ext_resource type="AudioStream" uid="uid://b6gg2fjmrxk8b" path="res://Sound/SFX/350923__cabled_mess__hurt_c_01.wav" id="9_lnbjo"]
+[ext_resource type="AudioStream" uid="uid://be0v7qgk5nc2x" path="res://Sound/Music/395792__chizmaster__happy-day-8-bit-loop.wav" id="10_3ewns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahl22"]
 size = Vector2(18, 26)
@@ -368,7 +373,7 @@ _data = {
 "walk_up": SubResource("Animation_4dcen")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(571, 304)
 collision_mask = 15
 script = ExtResource("1_omo2e")
@@ -431,5 +436,29 @@ vframes = 4
 libraries = {
 "": SubResource("AnimationLibrary_8rnqx")
 }
+
+[node name="AudioForClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_j7mxd")
+volume_db = -9.369
+bus = &"SFX"
+
+[node name="AudioForBoomerang" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7cl0t")
+bus = &"SFX"
+
+[node name="AudioForSpell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_uf2yd")
+volume_db = -4.685
+bus = &"SFX"
+
+[node name="AudioForHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_lnbjo")
+volume_db = -2.811
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_3ewns")
+volume_db = -3.748
+bus = &"Music"
 
 [connection signal="body_entered" from="HitPlayer" to="." method="_on_hit_player_body_entered"]

@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 MapCollisions=""
 HitPlayer=""
+Enemy=""
+Player=""
 
 [input]
 

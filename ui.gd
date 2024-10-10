@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 var score: int = 0
-var health : int = 3
+var health : int = 5
 
 func add_score(num: int):
 	score += num

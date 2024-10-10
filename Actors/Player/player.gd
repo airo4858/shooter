@@ -4,7 +4,13 @@ extends CharacterBody2D
 @export var boomerang_scene: Resource
 @export var spell_scene: Resource
 @export var move_speed: float = 100.0
-@export var hp: int = 3
+@export var hp: int = 5
+
+@onready var audio_game = $AudioStreamPlayer
+@onready var audio_shoot = $AudioForClick
+@onready var audio_boomerang = $AudioForBoomerang
+@onready var audio_spell = $AudioForSpell
+@onready var audio_hurt = $AudioForHurt
 
 var can_shoot: bool = true
 var can_spell: bool = true
@@ -19,7 +25,7 @@ func _input(event):
 		if (event.button_index == 1 and event.is_pressed()):
 			var new_projectile = projectile_scene.instantiate()
 			get_parent().add_child(new_projectile)
-			
+			audio_shoot.play()
 			var projectile_forward = position.direction_to(get_global_mouse_position())
 			#var projectile_forward = Vector2.from_angle(rotation)
 			new_projectile.fire(projectile_forward, 300.0)
@@ -28,7 +34,7 @@ func _input(event):
 func _input2(event):
 	var new_boomerang = boomerang_scene.instantiate()
 	get_parent().add_child(new_boomerang)
-	
+	audio_boomerang.play()
 	var boomerang_forward = position.direction_to(get_global_mouse_position())
 	#var boomerang_forward = Vector2.from_angle(rotation)
 	new_boomerang.fire(boomerang_forward, 300.0)
@@ -37,7 +43,7 @@ func _input2(event):
 func _input3(event):
 	var new_spell = spell_scene.instantiate()
 	get_parent().add_child(new_spell)
-	
+	audio_spell.play()
 	var spell_forward = position.direction_to(get_global_mouse_position())
 	#var spell_forward = Vector2.from_angle(rotation)
 	new_spell.fire(spell_forward, spell_speed)
@@ -45,13 +51,19 @@ func _input3(event):
 
 func hurt(damage_number: int):
 	hp -= damage_number
+	audio_hurt.play()
 	get_tree().get_root().get_node("Main/HUD").take_damage(1)
 	if (hp <= 0):
+		audio_hurt.play()
+		await audio_hurt.finished
 		print("im dead af")
 		get_tree().get_root().get_node("Main/HUD/End").visible = true
 		get_tree().paused = true
 		is_running = false
 		visible = false
+
+func _ready():
+	audio_game.play()
 
 func _physics_process(delta):
 	#look_at(get_global_mouse_position())
@@ -91,7 +103,6 @@ func _physics_process(delta):
 			$Energy2.visible = true
 		elif (spell_hold_time > 2):
 			$Energy1.visible = true
-
 			
 	if (spell_holding):
 		spell_hold_time += delta
@@ -118,7 +129,6 @@ func _physics_process(delta):
 			can_shoot = false
 	if (Input.is_action_just_released("boomerang")):
 		can_shoot = true
-	
 	
 	
 	#hit_player = get_node("HitPlayer")

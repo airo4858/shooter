@@ -7,10 +7,12 @@ var shoot_time: float = 1.0
 var projectile_speed: float = 100.0
 @export var enemy_projectile: Resource
 var animation : AnimationPlayer
+var hit_range : Area2D
 
 func initialize():
 	target = get_node("Main/Player")
 	animation = body.get_node("AnimationEnemy1")
+	hit_range = body.get_node("HitRange")
 
 func process_state(delta: float):
 	is_chasing = false
@@ -25,6 +27,11 @@ func process_state(delta: float):
 		animation.play("shoot_left")
 	elif(angle > 45 and angle < 135):
 		animation.play("shoot_up")
+		
+	var hit_targets = hit_range.get_overlapping_bodies()
+	if (not hit_targets.is_empty()):
+		get_tree().get_root().get_node("Main/Player").hurt(1)
+		body.queue_free()
 	
 func aim_and_shoot(delta):
 	look_at(target.position)

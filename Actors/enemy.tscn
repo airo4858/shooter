@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bx8fmxjin8ltr"]
+[gd_scene load_steps=22 format=3 uid="uid://bx8fmxjin8ltr"]
 
 [ext_resource type="Script" path="res://Actors/enemy.gd" id="1_t0p0m"]
 [ext_resource type="Script" path="res://Actors/idle.gd" id="2_xpi4b"]
@@ -503,7 +503,10 @@ _data = {
 "shoot_up": SubResource("Animation_0jyen")
 }
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2r4mq"]
+size = Vector2(27, 41)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("initial_state") groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource("1_t0p0m")
 initial_state = NodePath("States/Idle")
@@ -555,3 +558,9 @@ shape = SubResource("CircleShape2D_tbgm5")
 libraries = {
 "": SubResource("AnimationLibrary_bsuw4")
 }
+
+[node name="HitRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_2r4mq")

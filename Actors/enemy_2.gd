@@ -15,3 +15,4 @@ func hit(damage_number: int):
 		new_enemy1.position = position + Vector2(15,15)
 		new_enemy2.position = position + Vector2(-15,-15)
 		get_tree().get_root().get_node("Main/HUD").add_score(10)
+	

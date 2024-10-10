@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cg7if2pb4bhfx"]
+[gd_scene load_steps=16 format=3 uid="uid://cg7if2pb4bhfx"]
 
 [ext_resource type="Script" path="res://Actors/enemy_2.gd" id="1_bw12k"]
 [ext_resource type="Script" path="res://Actors/idle_2.gd" id="2_2hu8q"]
@@ -286,7 +286,10 @@ _data = {
 "enemy2_up": SubResource("Animation_kg8bf")
 }
 
-[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("initial_state")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6p2uu"]
+size = Vector2(29, 38)
+
+[node name="Enemy2" type="CharacterBody2D" node_paths=PackedStringArray("initial_state") groups=["Enemy"]]
 position = Vector2(319, 70)
 collision_layer = 2
 script = ExtResource("1_bw12k")
@@ -331,3 +334,9 @@ frame = 12
 libraries = {
 "": SubResource("AnimationLibrary_j7abe")
 }
+
+[node name="HitRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitRange"]
+position = Vector2(17.5, 8)
+shape = SubResource("RectangleShape2D_6p2uu")
